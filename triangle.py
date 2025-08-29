@@ -13,52 +13,74 @@
 
 
 class Triangle:
-    def __init__(self, x = None, y= None, z= None):
-        if x is None: 
+    def __init__(self, x=None, y=None, z=None):
+        """
+        Constructor supporting multiple ways to create a triangle:
+        - 0 arguments → default triangle (all sides = 1.0)
+        - 1 argument → equilateral triangle OR clone if a Triangle object is passed
+        - 2 arguments → isosceles triangle (x, x, y)
+        - 3 arguments → scalene triangle (x, y, z)
+        """
+        
+        # 0 arguments: default triangle
+        if x is None:
             self.sideA = self.sideB = self.sideC = 1.0
 
+        # - 1 argument: equilateral or clone 
         elif y is None and z is None:
-            if isinstance(x, Triangle):
-                self.sideA, self.sideB, self.sideC = x.sideA, x.sideB, x.sideC  #we didn't add any new values of x-- but merely copied it into self. 
-
-            else:
+            if isinstance(x, Triangle):  # clone: copy sides from existing triangle
+                self.sideA, self.sideB, self.sideC = x.sideA, x.sideB, x.sideC
+            else:                       # equilateral: all sides equal to x
                 self.sideA = self.sideB = self.sideC = x
 
+        # 2 arguments: isosceles
         elif z is None:
-            self.sideB = self.sideA = x
-            self.sideC = y
-            
+            self.sideB = self.sideA = x  # two equal sides
+            self.sideC = y                # third side
 
+        # 3 arguments: scalene
         else:
             self.sideA, self.sideB, self.sideC = x, y, z
 
+        # Optional: You could validate triangle inequality here if desired
+        # self._validate_triangle()
+
+    # Internal variables start with '_' to prevent recursion inside setters/getters
+
     @property
     def sideA(self):
+        #Getter for sideA
         return self._sideA
     
     @sideA.setter
     def sideA(self, val):
+        #setter for sideC
         if val < 0:
-            raise ValueError ("The side can't be less than 0")
+            raise ValueError("The side can't be less than 0")  # prevent negative side
         else:
-            self._sideA = val
+            self._sideA = val  # store the value internally
 
     @property
     def sideB(self):
+        #getter for sideB
         return self._sideB 
     
     @sideB.setter
     def sideB(self, val):
+        #setter for sideB
         if val < 0:
             raise ValueError("The side can't be less than 0")
         else:
             self._sideB = val 
+
     @property
     def sideC(self):
+        #Getter for sideC
         return self._sideC
     
     @sideC.setter
     def sideC(self, val):
+        #setter for sideC
         if val < 0:
             raise ValueError("The side can't be less than 0")
         else:
@@ -66,7 +88,5 @@ class Triangle:
 
     def __str__(self):
         return f"Triangle({self.sideA}, {self.sideB}, {self.sideC})"
-    
 
-   
-
+  
