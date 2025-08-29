@@ -13,20 +13,12 @@
 
 
 class Triangle:
-    def __init__(self, x=None, y=None, z=None):
-        """
-        Constructor supporting multiple ways to create a triangle:
-        - 0 arguments → default triangle (all sides = 1.0)
-        - 1 argument → equilateral triangle OR clone if a Triangle object is passed
-        - 2 arguments → isosceles triangle (x, x, y)
-        - 3 arguments → scalene triangle (x, y, z)
-        """
-        
+    def __init__(self, x=None, y=None, z=None)
         # 0 arguments: default triangle
         if x is None:
             self.sideA = self.sideB = self.sideC = 1.0
 
-        # - 1 argument: equilateral or clone 
+        # 1 argument: equilateral or clone 
         elif y is None and z is None:
             if isinstance(x, Triangle):  # clone: copy sides from existing triangle
                 self.sideA, self.sideB, self.sideC = x.sideA, x.sideB, x.sideC
