@@ -13,7 +13,7 @@
 
 
 class Triangle:
-    def __init__(self, x=None, y=None, z=None)
+    def __init__(self, x=None, y=None, z=None):
         # 0 arguments: default triangle
         if x is None:
             self.sideA = self.sideB = self.sideC = 1.0
